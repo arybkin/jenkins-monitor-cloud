@@ -39,11 +39,3 @@ availableSecrets:
   secretManager:
   - versionName: projects/846630294631/secrets/DB_ADDRESS_SECRET/versions/latest
     env: 'DB_ADDRESS_SECRET'
-  - versionName: projects/846630294631/secrets/DB_PASSWORD_SECRET/versions/latest
-    env: 'DB_PASSWORD_SECRET'
-  - versionName: projects/846630294631/secrets/MDA_USERNAME_SECRET/versions/latest
-    env: 'MDA_USERNAME_SECRET'
-  - versionName: projects/846630294631/secrets/MDA_PASSWORD_SECRET/versions/latest
-    env: 'MDA_PASSWORD_SECRET'
-  - versionName: projects/846630294631/secrets/MDA_URL_SECRET/versions/latest
-    env: 'MDA_URL_SECRET'
