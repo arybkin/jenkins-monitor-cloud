@@ -20,7 +20,7 @@ steps:
 
   # Deploy to Cloud Run
   - name: google/cloud-sdk
-    args: ['gcloud', 'run', 'deploy', 'helloworld',
+    args: ['gcloud', 'run', 'deploy', 'jenkins-monitor-service',
            '--image=gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
