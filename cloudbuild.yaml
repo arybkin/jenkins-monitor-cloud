@@ -29,14 +29,14 @@ steps:
            '--image=gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated',
-           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_PORT=5432',
-           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_USERNAME=postgres',
-           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_ADDRESS=$DB_ADDRESS_SECRET',
-           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_PASSWORD=$DB_PASSWORD_SECRET',
-           '--set-env-vars', 'JENKINS_MONITOR_MDA_POSTGRES_DATABASE=postgres',
-           '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_USERNAME=$MDA_USERNAME_SECRET',
-           '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_PASSWORD=$MDA_PASSWORD_SECRET',
-           '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_URL=$MDA_URL_SECRET']
+           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_PORT=5432,',
+           'JENKINS_MONITOR_BASE_POSTGRES_USERNAME=postgres,',
+           'JENKINS_MONITOR_BASE_POSTGRES_ADDRESS=$$DB_ADDRESS_SECRET,',
+           'JENKINS_MONITOR_BASE_POSTGRES_PASSWORD=$$DB_PASSWORD_SECRET,',
+           'JENKINS_MONITOR_MDA_POSTGRES_DATABASE=postgres,',
+           'JENKINS_MONITOR_MDA_JENKINS_USERNAME=$$MDA_USERNAME_SECRET,',
+           'JENKINS_MONITOR_MDA_JENKINS_PASSWORD=$$MDA_PASSWORD_SECRET,',
+           'JENKINS_MONITOR_MDA_JENKINS_URL=$$MDA_URL_SECRET']
     secretEnv: ['DB_ADDRESS_SECRET', 'DB_PASSWORD_SECRET', 'MDA_USERNAME_SECRET', 'MDA_PASSWORD_SECRET', 'MDA_URL_SECRET']
 
 images:
