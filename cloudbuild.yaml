@@ -1,6 +1,4 @@
 steps:
-  - name: 'bash'
-    args: ['export', 'PROJECT_ID="$(gcloud config get-value project -q)"']
   # Install dependencies
   - name: python
     entrypoint: pip
@@ -14,16 +12,16 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'gcr.io/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA', '.']
+           'gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA', '.']
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'gcr.io/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA']
+    args: ['push',  'gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA']
 
   # Deploy to Cloud Run
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'helloworld',
-           '--image=gcr.io/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA',
+           '--image=gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
 
