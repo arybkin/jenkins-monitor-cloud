@@ -5,14 +5,14 @@ steps:
     args: ["install", "-r", "requirements.txt", "--user"]
 
   # Run unit tests
-  - name: python
-    entrypoint: python
-    args: ["-m", "pylint", "app.py"]
-
-  # Run code analyzer
 #  - name: python
 #    entrypoint: python
-#    args: ["-m", "pytest", "tests/unit/unit_tests.py", "--junitxml=${SHORT_SHA}_test_log.xml"]
+#    args: ["-m", "pylint", "app.py"]
+
+  # Run code analyzer
+  - name: python
+    entrypoint: python
+    args: ["-m", "pytest", "tests/unit/unit_tests.py", "--junitxml=${SHORT_SHA}_test_log.xml"]
 
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
