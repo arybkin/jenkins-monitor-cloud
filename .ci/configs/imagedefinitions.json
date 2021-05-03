@@ -1,0 +1,6 @@
+[
+  {
+    "name": "attemp-container-10",
+    "imageUri": "409824266637.dkr.ecr.us-east-2.amazonaws.com/jenkins-monitor-docker:latest"
+  }
+]

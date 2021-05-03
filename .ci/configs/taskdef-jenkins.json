@@ -1,0 +1,28 @@
+{
+    "executionRoleArn": "arn:aws:iam::409824266637:role/CodeDeployECSRole2",
+    "containerDefinitions": [
+        {
+            "name": "attemp-container-10",
+            "image":  "409824266637.dkr.ecr.us-east-2.amazonaws.com/jenkins-monitor-docker:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "containerPort": 80
+                }
+            ],
+            "secrets": [
+                {"name":  "JENKINS_MONITOR_MDA_JENKINS_PASSWORD",
+                "valueFrom": "arn:aws:ssm:us-east-2:409824266637:parameter/JENKINS_MONITOR_BASE_POSTGRES_ADDRESS"}
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512",
+    "family": "attempt-task-def-10"
+}

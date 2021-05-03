@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  api:
+    image: jenkins-monitor:1.0
+    ports:
+      - 5000:5000
+    environment:
+      - JENKINS_MONITOR_BASE_POSTGRES_ADDRESS=192.168.100.54
+      - JENKINS_MONITOR_BASE_POSTGRES_PORT=5432
+      - JENKINS_MONITOR_BASE_POSTGRES_USERNAME=postgres
+      - JENKINS_MONITOR_BASE_POSTGRES_PASSWORD=yourPassword
+      - JENKINS_MONITOR_MDA_POSTGRES_DATABASE=postgres
+      - JENKINS_MONITOR_MDA_JENKINS_URL=https://mda.jenkins.etas-dev.com/blue/rest
+      - JENKINS_MONITOR_MDA_JENKINS_USERNAME=rya8fe
+      - JENKINS_MONITOR_MDA_JENKINS_PASSWORD=OxagileAlex>01
+    restart: always

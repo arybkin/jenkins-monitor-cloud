@@ -1,0 +1,29 @@
+{
+    "taskDefinition": "attempt-task-def-40:1",
+    "cluster": "attempt-cluster-40",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:409824266637:targetgroup/attempt-target-group-40/6cbb90b2369ae61d",
+            "containerName": "attempt-container-40",
+            "containerPort": 80
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-0cdb1fc84fc3e1ea1",
+                "subnet-0b1ac8b7dc31d5121"
+            ],
+            "securityGroups": [
+                "sg-0f7c53fe2201763b1"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    }
+}

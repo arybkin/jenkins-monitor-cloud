@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - pip3 install -r requirements.txt
+  build:
+    commands:
+      - python -m pytest tests/unit/unit_tests.py --junitxml=tests.xml
+reports:
+  pytest_reports:
+    files:
+      - tests.xml
+    base-directory: .
+    file-format: JUNITXML

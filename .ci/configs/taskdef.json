@@ -1,0 +1,24 @@
+{
+    "executionRoleArn": "arn:aws:iam::409824266637:role/CodeDeployECSRole2",
+    "containerDefinitions": [
+        {
+            "name": "<IMAGE1_NAME>",
+            "image": "409824266637.dkr.ecr.us-east-2.amazonaws.com/jenkins-monitor-docker:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "containerPort": 80
+                }
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512",
+    "family": "attempt-task-def-40"
+}

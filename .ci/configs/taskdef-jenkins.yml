@@ -1,0 +1,18 @@
+  ExecutionRoleArn: arn:aws:iam::409824266637:role/CodeDeployECSRole2
+  ContainerDefinitions:
+    - Name: attemp-container-name-20
+      Image: 409824266637.dkr.ecr.us-east-2.amazonaws.com/jenkins-monitor-docker
+      Essential: true
+      PortMappings:
+        - HostPort: 80
+          Protocol: tcp
+          CcontainerPort: 80
+      Environment:
+        - Name: JENKINS_MONITOR_MDA_JENKINS_PASSWORD
+          ValueFrom: arn:aws:ssm:us-east-2:409824266637:parameter/JENKINS_MONITOR_BASE_POSTGRES_ADDRESS
+  Cpu: 256
+  Memory: 512
+  NetworkMode: awsvpc
+  RequiresCompatibilities:
+    - FARGATE
+  Family: attemp-task-def-20

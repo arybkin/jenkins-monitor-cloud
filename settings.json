@@ -1,0 +1,15 @@
+{
+  "Base": {
+    "Postgres_Address": "192.168.100.54",
+    "Postgres_Port": "5432",
+    "Postgres_Username": "postgres",
+    "Postgres_Password": "yourPassword"
+  },
+  "MDA":
+  {
+      "Postgres_Database": "postgres",
+      "Jenkins_Url": "Jenkins_Url",
+      "Jenkins_Username": "Jenkins_Username",
+      "Jenkins_Password": "Jenkins_Password"
+  }
+}
