@@ -12,7 +12,7 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:$SHORT_SHA', '.']
+           'gcr.io/$PROJECT_ID/$_REPO_NAME/myimage:$SHORT_SHA', '.']
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -21,7 +21,7 @@ steps:
   # Deploy to Cloud Run
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'helloworld',
-           '--image=us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA',
+           '--image=gcr.io/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
 
@@ -33,4 +33,4 @@ steps:
 #      - ${SHORT_SHA}_test_log.xml
 # Store images in Google Artifact Registry
 images:
-  - us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA
+  - gcr.io/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA
