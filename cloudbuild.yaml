@@ -37,6 +37,7 @@ steps:
            '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_USERNAME=$$MDA_USERNAME_SECRET',
            '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_PASSWORD=$$MDA_PASSWORD_SECRET',
            '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_URL=$$MDA_URL_SECRET']
+    secretEnv: ["DB_ADDRESS_SECRET", "DB_PASSWORD_SECRET", "MDA_USERNAME_SECRET", "MDA_PASSWORD_SECRET", "MDA_URL_SECRET"]
 
 images:
   - gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA
