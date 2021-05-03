@@ -7,8 +7,13 @@ steps:
   # Run unit tests
   - name: python
     entrypoint: python
+    args: ["-m", "pylint", "app.py"]
+
+  # Run code analyzer
+  - name: python
+    entrypoint: python
     args: ["-m", "pytest", "tests/unit/unit_tests.py", "--junitxml=${SHORT_SHA}_test_log.xml"]
-#gcr.io/esoteric-bruin-312613/jenkins-monitor-docker
+
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
@@ -25,12 +30,5 @@ steps:
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
 
-# Save test logs to Google Cloud Storage
-#artifacts:
-#  objects:
-#    location: gs://$_BUCKET_NAME/
-#    paths:
-#      - ${SHORT_SHA}_test_log.xml
-# Store images in Google Artifact Registry
 images:
-  - gcr.io/$PROJECT_ID/$_REPO_NAME/jenkins-monitor-docker:$SHORT_SHA
+  - gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA
