@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 available_list = ['MDA']
 configurations = build_allowed_configs(available_list)
-log.warning(f"Creds: {configurations[0].config['Base']['Postgres_Address']}")
+log.warning(f"Creds: {configurations[0].postgres_address}")
 
 
 def post_to_db(runs_link, postgres, jenkins):
