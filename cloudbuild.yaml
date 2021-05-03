@@ -28,10 +28,15 @@ steps:
     args: ['gcloud', 'run', 'deploy', 'jenkins-monitor-service',
            '--image=gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
-           '--allow-unauthenticated']
-    env:
-      - 'JENKINS_MONITOR_POSTGRES_PORT=PORT'
-      - 'JENKINS_MONITOR_POSTGRES_ADDRESS=ADDRESS'
+           '--allow-unauthenticated',
+           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_PORT=5432',
+           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_ADDRESS=ADDRESS_SECRET',
+           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_USERNAME=USERNAME_DB_SECRET',
+           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_PASSWORD=PASSWORD_DB_SECRET',
+           '--set-env-vars', 'JENKINS_MONITOR_MDA_POSTGRES_DATABASE=MDA_DATABASE',
+           '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_USERNAME=USERNAME_MDA_SECRET',
+           '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_PASSWORD=PASSWORD_MDA_SECRET',
+           '--set-env-vars', 'JENKINS_MONITOR_MDA_JENKINS_URL=URL_MDA_SECRET']
 
 images:
   - gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA
