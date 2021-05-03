@@ -29,7 +29,7 @@ steps:
            '--image=gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated',
-           '--set-env-vars', 'JENKINS_MONITOR_POSTGRES_PORT=PORT']
+           '--set-env-vars', 'JENKINS_MONITOR_BASE_POSTGRES_PORT=PORT']
 
 
 images:
