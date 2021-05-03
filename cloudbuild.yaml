@@ -10,9 +10,9 @@ steps:
     args: ["-m", "pylint", "app.py"]
 
   # Run code analyzer
-  - name: python
-    entrypoint: python
-    args: ["-m", "pytest", "tests/unit/unit_tests.py", "--junitxml=${SHORT_SHA}_test_log.xml"]
+#  - name: python
+#    entrypoint: python
+#    args: ["-m", "pytest", "tests/unit/unit_tests.py", "--junitxml=${SHORT_SHA}_test_log.xml"]
 
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
@@ -29,6 +29,9 @@ steps:
            '--image=gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
+    env:
+      - 'JENKINS_MONITOR_POSTGRES_PORT=PORT'
+      - 'JENKINS_MONITOR_POSTGRES_ADDRESS=ADDRESS'
 
 images:
   - gcr.io/$PROJECT_ID/jenkins-monitor-docker:$SHORT_SHA
