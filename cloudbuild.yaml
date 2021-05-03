@@ -1,4 +1,6 @@
 steps:
+  - name: 'export'
+    args: 'PROJECT_ID="$(gcloud config get-value project -q)'
   # Install dependencies
   - name: python
     entrypoint: pip
