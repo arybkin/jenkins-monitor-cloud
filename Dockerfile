@@ -7,6 +7,7 @@ COPY *.txt ${PROJECT_DIR}/
 COPY *.json ${PROJECT_DIR}/
 #COPY *.json ${PROJECT_DIR}/
 COPY tables ${PROJECT_DIR}/tables
+COPY requests ${PROJECT_DIR}/requests
 
 WORKDIR ${PROJECT_DIR}
 
