@@ -1,3 +1,4 @@
+google-cloud-secret-manager
 mock
 pytest
 flask

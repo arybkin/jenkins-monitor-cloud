@@ -1,5 +1,6 @@
 import json
 import os
+from google.cloud import secretmanager
 
 APPENDIX = "JENKINS_MONITOR_"
 JENKINS_LIST = f"{APPENDIX}JENKINS_LIST"
@@ -16,6 +17,8 @@ CONFIG_JENKINS_USERNAME = "Jenkins_Username"
 CONFIG_JENKINS_PASSWORD = "Jenkins_Password"
 
 CONFIGS = dict()
+
+client = secretmanager.SecretManagerServiceClient()
 
 
 def init_configs():
@@ -49,7 +52,10 @@ class ConfigurationBase:
         self.postgres_password = self.get_config(CONFIG_POSTGRES_PASSWORD, section)
 
     def get_config(self, config_name, section):
-        target_value = self.__get_os_var(config_name, section)
+        target_value = self.__get_secret(config_name, section)
+        if not target_value:
+            target_value = self.__get_os_var(config_name, section)
+
         if not target_value:
             target_value = self.__get_config_var(config_name, section)
 
@@ -71,6 +77,20 @@ class ConfigurationBase:
             return os.environ.get(var)
         var = f"{APPENDIX}{key.upper()}"
         return os.environ.get(var)
+
+    @staticmethod
+    def __get_secret(key: str, name: str):
+        if name:
+            secret_name = f"{APPENDIX}{name.upper()}_{key.upper()}"
+        else:
+            secret_name = f"{APPENDIX}{key.upper()}"
+
+        project_id = "846630294631"
+        request = {"name": f"projects/{project_id}/secrets/{secret_name}/versions/latest"}
+        print(request)
+        response = client.access_secret_version(request)
+        secret_string = response.payload.data.decode("UTF-8")
+        return secret_string
 
 
 class Configuration(ConfigurationBase):
