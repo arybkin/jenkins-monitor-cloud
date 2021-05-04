@@ -1,7 +1,6 @@
 import json
 import os
-
-from Tools.scripts import google
+import google
 from google.cloud import secretmanager
 
 APPENDIX = "JENKINS_MONITOR_"
