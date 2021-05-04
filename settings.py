@@ -1,5 +1,7 @@
 import json
 import os
+
+from Tools.scripts import google
 from google.cloud import secretmanager
 
 APPENDIX = "JENKINS_MONITOR_"
@@ -80,17 +82,20 @@ class ConfigurationBase:
 
     @staticmethod
     def __get_secret(key: str, name: str):
-        if name:
-            secret_name = f"{APPENDIX}{name.upper()}_{key.upper()}"
-        else:
-            secret_name = f"{APPENDIX}{key.upper()}"
+        try:
+            if name:
+                secret_name = f"{APPENDIX}{name.upper()}_{key.upper()}"
+            else:
+                secret_name = f"{APPENDIX}{key.upper()}"
 
-        project_id = "846630294631"
-        request = {"name": f"projects/{project_id}/secrets/{secret_name}/versions/latest"}
-        print(request)
-        response = client.access_secret_version(request)
-        secret_string = response.payload.data.decode("UTF-8")
-        return secret_string
+            project_id = "846630294631"
+            request = {"name": f"projects/{project_id}/secrets/{secret_name}/versions/latest"}
+            print(request)
+            response = client.access_secret_version(request)
+            secret_string = response.payload.data.decode("UTF-8")
+            return secret_string
+        except google.api_core.exceptions.NotFound:
+            return None
 
 
 class Configuration(ConfigurationBase):
